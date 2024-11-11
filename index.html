@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CRUDS</title>
     <link rel="stylesheet" href="./master.css">
+    <link rel="stylesheet" href="./js/main.js">
 </head>
 <body>
     <div class="crud">
@@ -16,11 +17,11 @@
         <div class="inputs">
            <input type="text" placeholder="Title" id="title">
            <div class="price">
-            <input type="number" id="price" placeholder="price">
-            <input type="number" id="taxes" placeholder="taxes">
-            <input type="number" id="ads" placeholder="ads">
-            <input type="number" id="discunt" placeholder="discunt">
-            <small id="total">986948</small>
+            <input onkeyup="getTotal()" type="number" id="price" placeholder="price">
+            <input onkeyup="getTotal()" type="number" id="taxes" placeholder="taxes">
+            <input onkeyup="getTotal()" type="number" id="ads" placeholder="ads">
+            <input onkeyup="getTotal()" type="number" id="discount" placeholder="discount">
+            <small  id="total"></small>
            </div>
            <input type="number" placeholder="count" id="count">
            <input type="text" placeholder="category" id="category">
@@ -58,5 +59,7 @@
             </table>
         </div>
     </div>
+
+    <script src="./js/main.js"></script>
 </body>
 </html>
