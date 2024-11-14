@@ -7,6 +7,8 @@ let total = document.getElementById('total');
 let count = document.getElementById('count'); 
 let category = document.getElementById('category'); 
 let submit = document.getElementById('submit');
+let moode = 'create';
+let temp;
 
 function getTotal(){
    if(price.value != '') {
@@ -35,10 +37,23 @@ submit.onclick = function() {
         category: category.value
     };
 
-    // Add product to dataPro array and update localStorage
-    dataPro.push(newPro);
+    if (moode==='create'){
+        if(newPro.count> 1){
+            for(i=0 ; i<newPro.count ;i++){
+                dataPro.push(newPro);
+            }
+        }else{
+            dataPro.push(newPro);
+        }
+    }else{
+        dataPro[temp]= newPro;
+        moode= 'create';
+        submit.innerHTML ='create';
+        count.style.display ='block';
+    }
+    
     localStorage.setItem('product', JSON.stringify(dataPro));
-    console.log(dataPro);
+    
 
     clearData();
     showData();
@@ -58,6 +73,7 @@ function clearData(){
 
 // Display data in the table
 function showData() {
+    getTotal();
     let table = '';
     for(let i = 0; i < dataPro.length; i++) {
         table += `
@@ -79,7 +95,7 @@ function showData() {
     let BtndeleteAll = document.getElementById('deleteAll');
     if(dataPro.length>0){
         BtndeleteAll.innerHTML= `
-           <button onclick="deleteAll()" >Delete All</button>
+           <button onclick="deleteAll() " >Delete  (${dataPro.length} product)</button>
          
         `
     }else{
@@ -103,3 +119,26 @@ function deleteAll(){
 
 // Display data when page loads
 showData();
+
+
+///update
+
+function updateData(i){
+     title.value = dataPro[i].title;    
+     price.value = dataPro[i].price;    
+     taxes.value = dataPro[i].taxes;    
+     ads.value = dataPro[i].ads;    
+     ads.value = dataPro[i].ads;    
+     discount.value = dataPro[i].discount;  
+     getTotal();    
+     category.value = dataPro[i].category;
+     count.style.display ='none';
+     submit.innerHTML='update';
+     moode = 'update';
+     temp = i;
+     scroll({
+        top:0,
+        behavior:'smooth'
+     })
+       
+}
