@@ -32,10 +32,10 @@
 
         <div class="outputs">
             <div class="searshblock">
-                <input type="text" placeholder="Search" id="Search">
+                <input onkeyup="searchdata(this.value)" type="text" placeholder="Search" id="Search">
                 <div class="btnsearsh">
-                    <button id="searshtitle">Searsh By Title</button>
-                    <button id="searshCategory">Searsh By Category</button>
+                    <button onclick="getSearchMood(this.id)" id="searshtitle">Searsh By Title</button>
+                    <button onclick="getSearchMood(this.id)" id="searshCategory">Searsh By Category</button>
                 </div>
                 
 
